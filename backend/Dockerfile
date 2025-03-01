@@ -13,7 +13,8 @@ WORKDIR /app
 
 # Copy the built binary from the builder stage
 COPY --from=builder /app/main .
+COPY --from=builder /app/init.sql .
 EXPOSE 8080
 
 # Command to run the application
-CMD ["./main"]
+CMD ["./backend-api"]
