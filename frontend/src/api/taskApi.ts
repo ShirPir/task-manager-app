@@ -5,7 +5,7 @@ export interface Task {
     status: string;
 }
 
-const API_BASE_URL = 'http://localhost:8080'; // Backend API URL
+const API_BASE_URL = process.env.API_BASE_URL;
 
 export const fetchTasks = async (): Promise<Task[]> => {
     const response = await fetch(`${API_BASE_URL}/tasks`);

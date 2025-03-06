@@ -26,10 +26,10 @@ spec:
           value: password
         - name: POSTGRES_DB
           value: task_manager_db
-        volumeMounts:
-        - name: db-data-volume
-          mountPath: /var/lib/postgresql/data
-      volumes:
-      - name: db-data-volume
-        persistentVolumeClaim:
-          claimName: db-pv-claim
+        volumeMounts:  # Add volumeMounts section
+        - name: initdb-volume
+          mountPath: /docker-entrypoint-initdb.d/ # Standard PostgreSQL initdb path
+      volumes: # Add volumes section
+      - name: initdb-volume
+        configMap:
+          name: task-manager-db-initdb-config
